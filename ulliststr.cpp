@@ -168,7 +168,7 @@ std::string const & ULListStr::front() const {
 
 // getValAtLoc
 std::string* ULListStr::getValAtLoc(size_t loc) const {
-  Item* curr = head_;
+  Item* curr_ = head_;
   size_t count = 0;
 
   // location does not exist
@@ -178,17 +178,17 @@ std::string* ULListStr::getValAtLoc(size_t loc) const {
 
   // iterate though each node, from the node's first to last pointers.
   // increment count until last occurance of last pointer or until loc is achieved.
-  while (curr) {
-    for (int i = curr->first; i < curr->last; i++) {
+  while (curr_) {
+    for (int i = curr_->first; i < curr_->last; i++) {
       if (count == loc) {
-        std::string* valAtLoc = &curr->val[i];
+        std::string* valAtLoc = &curr_->val[i];
         return valAtLoc;
       }
       
       count++;
     }
 
-    curr = curr->next;
+    curr_ = curr_->next;
   }
 }
 
