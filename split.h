@@ -19,4 +19,6 @@ struct Node
 
 void split(Node*& in, Node*& odds, Node*& evens);
 
+Node* findLastNode(Node*& n);
+
 #endif

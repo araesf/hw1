@@ -16,8 +16,48 @@ the function below should be the only one in this file.
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+  if (!in) {
+    return;
+  }
+
+  // detatch head of input list so we can append it to either
+  // odd or even list. in order to do this, we need to detatch
+  // the next node
+  Node* curr = in;
+  in = in->next;
+  curr->next = nullptr;
+
+  // if even, recursively find the last node in even list 
+  // and append the current node from input list to next node in even list.
+  // vice versa if odd.
+  if (curr->value % 2 == 0) {
+    if (evens == nullptr) {
+      evens = curr;
+    } else {
+      Node* temp = findLastNode(evens);
+      temp->next = curr;
+    }
+  }
+  
+  else {
+      if (odds == nullptr) {
+      odds = curr;
+      } else {
+      Node* temp = findLastNode(odds);
+      temp->next = curr;
+    }
+  }
+
+  split(in, odds, evens);
 }
 
-/* If you needed a helper function, write it here */
+
+// helper function to recursively find the last node in either odd or even
+// linked lists.
+Node* findLastNode(Node*& n) {
+  if (n->next == nullptr) {
+    return n;
+  }
+
+  findLastNode(n->next);
+}
